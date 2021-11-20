@@ -21,7 +21,7 @@
 
 #### 移植zCore
 
--   将[`zCore2Hifive`]()克隆到本地，打开zCore，下面的相对路径均默认是在zCore目录下
+-   将[`zCore2Hifive`](https://github.com/tkf2019/zCore2HiFive)克隆到本地，打开zCore，下面的相对路径均默认是在zCore目录下
 
 -   在`zCore/src/platform/riscv/consts.rs`中将物理地址的起始位置修改为`0x8000_0000`，并添加对应feature
 
