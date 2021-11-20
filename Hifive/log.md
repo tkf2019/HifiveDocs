@@ -1,8 +1,29 @@
+#### U-Boot常用命令
+
+- **loadb**：通过串口下载二进制文件
+- **printenv**：打印环境变量，包括启动设备和起始地址等
+- **setenv**：设置环境变量，例如boot之后运行的脚本选项：
+    - **baudrate**：串口波特率，默认为115200
+    - **boot_targets**：列表包含nvme0，usb0，mmc0等，其中nvme0为SSD卡，我们拿到的主机上已装好了ubuntu系统；usb0为外接USB设备，mmc0即为SD卡，将该选项改为mmc0即可；
+    - 此外还包含一些网络相关的配置，可以从远程加载系统
+- **fdt print /cpus；fdt list /cpus**：查看设备信息，如图；可以看到cpu相关信息，大核和小核的架构不同，小核不支持页表，不支持浮点运算，且没有**d-cache**
+
+#### SD卡默认分区简介
+
+- U-Boot SPL
+- U-Boot ITB（DTB with U-Boot overlay，OpenSBI generic FW_DYNAMIC，U-Boot proper）
+- FAT16分区，命名为**boot**，包含设置信息(EXTLINUX configuration)，内核镜像以及设备树信息(device tree blob)
+- EXT4分区，命名为**root**，包含由**FUSDK**构建的文件系统
+
+#### 移植uCore-SMP
+
+-   重现陶天骅学长的工作，进一步了解环境配置和编译流程
+
 #### 移植zCore
 
--   
+-   将[`zCore2Hifive`]()克隆到本地，打开zCore，下面的相对路径均默认是在zCore目录下
 
--   在`zCore/src/platform/riscv/consts.rs`中将物理地址的起始位置修改为`0x8000_0000`，并在编译时添加对应feature
+-   在`zCore/src/platform/riscv/consts.rs`中将物理地址的起始位置修改为`0x8000_0000`，并添加对应feature
 
     ```makefile
     # zCore/src/platform/riscv/consts.rs
