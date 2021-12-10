@@ -39,7 +39,7 @@
 
 <img src="../img/img-6.png" style="zoom:50%;" />
 
--   将SD卡插入主机，连接串口（串口相关参见中文文档）后启动并进入u-boot，执行`printenv`查看`boot_targets`，mmc0为SD卡启动，执行`setenv boot_targets=mmc0`，再执行`boot`即可启动zCore
+-   将SD卡插入主机，连接串口（串口相关参见中文文档）后启动并进入u-boot，执行`printenv`查看`boot_targets`，mmc0为SD卡启动，执行`setenv boot_targets mmc0`，再执行`boot`即可启动zCore
 
 #### 启动S7
 
